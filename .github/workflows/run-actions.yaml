@@ -1,0 +1,15 @@
+name: run-actions
+on: [push, pull_request]
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3  #each bullet point is it's own step, clone repo into runner. "uses" = use preexisting action
+      - name: Set up Python 3.7 
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.7"
+      - name: Install pytest #software we want to install
+        run: pip3 install pytest
+      - name: Test with Pytest #test's we want to run
+        run: pytest
